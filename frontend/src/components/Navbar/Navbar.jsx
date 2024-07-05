@@ -9,6 +9,10 @@ const Navbar = ({ setShowLogin }) => {
   const { getTotalCartAmount } = useContext(StoreContext);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
@@ -27,10 +31,9 @@ const Navbar = ({ setShowLogin }) => {
 
   return (
     <div className={isScrolled ? "navbar fixed-navbar" : "navbar"}>
-      <Link to='/'><img src={assets.logo} alt="" className="logo" /></Link>
+      <Link to='/' onClick={scrollToTop}><img src={assets.logo} alt="Logo" className="logo" /></Link>
       <ul className="navbar-menu">
-        <Link to='/' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</Link>
-        {/* <a to='' onClick={() => setMenu("home")} className={menu === "home" ? "active" : ""}>Home</a> */}
+        <Link to='/' onClick={() => { setMenu("home"); scrollToTop(); }} className={menu === "home" ? "active" : ""}>Home</Link>
         <a href='#explore-menu' onClick={() => setMenu("menu")} className={menu === "menu" ? "active" : ""}>Menu</a>
         <a href='#app-download' onClick={() => setMenu("app-download")} className={menu === "app-download" ? "active" : ""}>App Download</a>
         <a href='#footer' onClick={() => setMenu("contact-us")} className={menu === "contact-us" ? "active" : ""}>Contact us</a>
